@@ -7,23 +7,23 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="EmployeeMaster")
+@Table(name="Employee")
 public class  Employee {
-	
+
 	@Id
  	@GeneratedValue
 	@Column(name="emp_id")
 	private int empid;
-	
+
 	@Column(name="emp_name")
 	private String empName;
-	
+
 	@Column(name="emp_age")
 	private String empAge;
-	
+
 	@Column(name="emp_salary")
 	private int empSalary;
-	
+
 	@Column(name="emp_address")
 	private String empAddress;
 
