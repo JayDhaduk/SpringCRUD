@@ -6,41 +6,40 @@
 <html>
  <head>
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-  <title>Spring-MVC DEMO</title>
+  <title>Spring MVC Form Handling</title>
  </head>
  <body>
   <h2>Add Employee Data</h2>
-  
-	<form:form method="POST" action="save.html"  modelAttribute="empFrm">
+  <form:form method="POST" action="save.html" modelAttribute="empFrm">
       <table>
        <tr>
-           <td><form:label path="empid" >Employee ID:</form:label></td>
-           <td><form:input path="empid"  readonly="true"/></td>
+           <td><form:label path="empid">Employee ID:</form:label></td>
+           <td><form:input path="empid" value="${employee.empid}" readonly="true"/></td>
        </tr>
        <tr>
            <td><form:label path="empName">Employee Name:</form:label></td>
-           <td><form:input path="empName" /></td>
+           <td><form:input path="empName" value="${employee.empName}"/></td>
        </tr>
        <tr>
            <td><form:label path="empAge">Employee Age:</form:label></td>
-           <td><form:input path="empAge" /></td>
+           <td><form:input path="empAge" value="${employee.empAge}"/></td>
        </tr>
        <tr>
            <td><form:label path="empSalary">Employee Salary:</form:label></td>
-           <td><form:input path="empSalary" /></td>
+           <td><form:input path="empSalary" value="${employee.empSalary}"/></td>
        </tr>
        
        <tr>
            <td><form:label path="empAddress">Employee Address:</form:label></td>
-           <td><form:input path="empAddress" /></td>
+           <td><form:input path="empAddress" value="${employee.empAddress}"/></td>
        </tr>
           <tr>
          <td colspan="2"><input type="submit" value="Submit"/></td>
         </tr>
    </table> 
   </form:form>
- 
-<c:if test="${!empty employees}">
+  
+<%--   <c:if test="${!empty employees}">
   <h2>List Employees</h2>
  <table align="left" border="1">
   <tr>
@@ -54,17 +53,15 @@
 
   <c:forEach items="${employees}" var="employee">
    <tr>
-    <td><c:out value="${employee.empid}"/></td>
-    <td><c:out value="${employee.empName}"/></td>
-    <td><c:out value="${employee.empAge}"/></td>
-    <td><c:out value="${employee.empSalary}"/></td>
-    <td><c:out value="${employee.empAddress}"/></td>
-    <td align="center"><a href="edit.html?id=${employee.empid}">Edit</a> | 
-    				   <a href="delete.html?id=${employee.empid}">Delete</a></td>
+    <td><c:out value="${employee.id}"/></td>
+    <td><c:out value="${employee.name}"/></td>
+    <td><c:out value="${employee.age}"/></td>
+    <td><c:out value="${employee.salary}"/></td>
+    <td><c:out value="${employee.address}"/></td>
+    <td align="center"><a href="edit.html?id=${employee.id}">Edit</a> | <a href="delete.html?id=${employee.id}">Delete</a></td>
    </tr>
   </c:forEach>
  </table>
-</c:if>
-
+</c:if> --%>
  </body>
 </html>

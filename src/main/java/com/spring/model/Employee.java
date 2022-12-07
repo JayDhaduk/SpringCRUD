@@ -3,6 +3,7 @@ package com.spring.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,8 +11,9 @@ import javax.persistence.Table;
 @Table(name="Employee")
 public class  Employee {
 
+
 	@Id
- 	@GeneratedValue
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="emp_id")
 	private Long empid;
 
@@ -30,15 +32,6 @@ public class  Employee {
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
-	}
-
-	public Employee(Long empid, String empName, String empAge, Integer empSalary, String empAddress) {
-		super();
-		this.empid = empid;
-		this.empName = empName;
-		this.empAge = empAge;
-		this.empSalary = empSalary;
-		this.empAddress = empAddress;
 	}
 
 	public Long getEmpid() {
@@ -81,9 +74,19 @@ public class  Employee {
 		this.empAddress = empAddress;
 	}
 
+	public Employee(Long empid, String empName, String empAge, Integer empSalary, String empAddress) {
+		super();
+		this.empid = empid;
+		this.empName = empName;
+		this.empAge = empAge;
+		this.empSalary = empSalary;
+		this.empAddress = empAddress;
+	}
+
 	@Override
 	public String toString() {
 		return "Employee [empid=" + empid + ", empName=" + empName + ", empAge=" + empAge + ", empSalary=" + empSalary
 				+ ", empAddress=" + empAddress + "]";
 	}
+
 }
