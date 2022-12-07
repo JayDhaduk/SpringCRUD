@@ -13,7 +13,7 @@ public class  Employee {
 	@Id
  	@GeneratedValue
 	@Column(name="emp_id")
-	private int empid;
+	private Long empid;
 
 	@Column(name="emp_name")
 	private String empName;
@@ -22,7 +22,7 @@ public class  Employee {
 	private String empAge;
 
 	@Column(name="emp_salary")
-	private int empSalary;
+	private Integer empSalary;
 
 	@Column(name="emp_address")
 	private String empAddress;
@@ -32,7 +32,7 @@ public class  Employee {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Employee(int empid, String empName, String empAge, int empSalary, String empAddress) {
+	public Employee(Long empid, String empName, String empAge, Integer empSalary, String empAddress) {
 		super();
 		this.empid = empid;
 		this.empName = empName;
@@ -41,11 +41,11 @@ public class  Employee {
 		this.empAddress = empAddress;
 	}
 
-	public int getEmpid() {
+	public Long getEmpid() {
 		return empid;
 	}
 
-	public void setEmpid(int empid) {
+	public void setEmpid(Long empid) {
 		this.empid = empid;
 	}
 
@@ -65,11 +65,11 @@ public class  Employee {
 		this.empAge = empAge;
 	}
 
-	public int getEmpSalary() {
+	public Integer getEmpSalary() {
 		return empSalary;
 	}
 
-	public void setEmpSalary(int empSalary) {
+	public void setEmpSalary(Integer empSalary) {
 		this.empSalary = empSalary;
 	}
 
