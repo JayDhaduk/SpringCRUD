@@ -26,4 +26,15 @@ public class EmployeeDaoImpl implements EmployeeDao{
 		session  = sessionFactory.getCurrentSession();
 		return session.createCriteria(Employee.class).list();
 	}
+
+	public Employee getEmpbyId(Long empid) {
+		session  = sessionFactory.getCurrentSession();
+		return session.get(Employee.class, empid);
+	}
+
+	public String delEmpbyId(Long empid) {
+		session  = sessionFactory.getCurrentSession();
+		session.createQuery("DELETE FROM Employee WHERE empid = "+ empid).executeUpdate();
+		return "Successfully delete";
+	}
 }

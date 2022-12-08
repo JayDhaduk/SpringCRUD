@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,10 +25,10 @@ public class EmpController {
 	}
 
 	@RequestMapping(value = "/add.html", method = RequestMethod.GET)
-	public ModelAndView addEmpDetails(@ModelAttribute("empFrm") Employee empData) {
-		ModelMap model = new ModelMap();
+	public ModelAndView addEmpDetails(@ModelAttribute("empFrm") Employee empData,ModelMap model) {
+		model = new ModelMap();
 		model.addAttribute("employee", empData);
-		model.addAttribute("employees",empService.listOfEmp());
+		model.addAttribute("employees", empService.listOfEmp());
 		return new ModelAndView("addEmployee", model);
 	}
 
@@ -36,9 +38,32 @@ public class EmpController {
 		System.out.println("\n" + msg);
 		return new ModelAndView("addEmployee");
 	}
-
+	
+	@RequestMapping(value = "/edit.html", method = RequestMethod.GET)
+	public ModelAndView editEmpDetail(@ModelAttribute("empFrm")Employee empData,
+			ModelMap model,HttpServletRequest re) {
+		model = new ModelMap();
+		System.out.println(empService.getEmpbyId(empData.getEmpid()));
+		model.addAttribute("employee", empService.getEmpbyId(empData.getEmpid()));
+		model.addAttribute("employees", empService.listOfEmp());
+		return new ModelAndView("addEmployee", model);
+	}
+	
+	@RequestMapping(value = "/delete.html", method = RequestMethod.GET)
+	public ModelAndView deleteEmpDetail(@ModelAttribute("empFrm") Employee empData,
+			ModelMap model,HttpServletRequest re) {
+		model = new ModelMap();
+		System.out.println(empService.getEmpbyId(empData.getEmpid()));
+		String msg = empService.delEmpbyId(empData.getEmpid());
+		model.addAttribute("employees", empService.listOfEmp());
+		System.out.println(msg);
+		return new ModelAndView("addEmployee", model);
+	}
+	
 	@RequestMapping(value = "/employees.html", method = RequestMethod.GET)
 	public ModelAndView listofEmployee() {
-		return new ModelAndView("index");
+		ModelMap model = new ModelMap();
+		model.addAttribute("employees", empService.listOfEmp());
+		return new ModelAndView("allEmplist", model);
 	}
 }

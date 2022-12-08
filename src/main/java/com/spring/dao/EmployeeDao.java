@@ -10,4 +10,8 @@ public interface EmployeeDao {
 
 	public List<Employee> listOfEmp();
 
+	public Employee getEmpbyId(Long empid);
+
+	public String delEmpbyId(Long empid);
+
 }

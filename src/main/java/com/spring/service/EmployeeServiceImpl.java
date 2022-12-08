@@ -26,4 +26,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.listOfEmp();
 	}
 
+	public Employee getEmpbyId(Long empid) {
+		return employeeDao.getEmpbyId(empid);
+	}
+
+	public String delEmpbyId(Long empid) {
+		return employeeDao.delEmpbyId(empid);
+	}
+
 }
