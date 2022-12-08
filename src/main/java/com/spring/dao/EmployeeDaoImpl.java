@@ -6,19 +6,20 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
 import com.spring.model.Employee;
 
 
 @Repository("EmployeeDao")
 public class EmployeeDaoImpl implements EmployeeDao{
-	
+
 	@Autowired
 	private SessionFactory sessionFactory;
 	private Session session;
-	
+
 	public String addEmpDetail(Employee empData) {
 		session  = sessionFactory.getCurrentSession();
-		session.save(empData);
+		session.saveOrUpdate(empData);
 		return "Employee data entered Succesfully";
 	}
 
@@ -34,7 +35,7 @@ public class EmployeeDaoImpl implements EmployeeDao{
 
 	public String delEmpbyId(Long empid) {
 		session  = sessionFactory.getCurrentSession();
-		session.createQuery("DELETE FROM Employee WHERE empid = "+ empid).executeUpdate();
+		session.createQuery("delete from Employee where emp_id="+empid).executeUpdate();
 		return "Successfully delete";
 	}
 }

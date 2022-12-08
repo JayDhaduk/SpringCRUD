@@ -16,7 +16,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Autowired
 	private EmployeeDao employeeDao;
-	
+
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public String addEmpDetail(Employee empData) {
 		return employeeDao.addEmpDetail(empData);
@@ -30,6 +30,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeDao.getEmpbyId(empid);
 	}
 
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public String delEmpbyId(Long empid) {
 		return employeeDao.delEmpbyId(empid);
 	}

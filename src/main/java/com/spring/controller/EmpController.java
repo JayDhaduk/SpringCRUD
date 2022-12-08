@@ -8,6 +8,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.model.Employee;
@@ -35,31 +36,27 @@ public class EmpController {
 	@RequestMapping(value = "/save.html", method = RequestMethod.POST)
 	public ModelAndView saveEmpDetails(@ModelAttribute("empFrm") Employee empData) {
 		String msg = empService.addEmpDetail(empData);
-		System.out.println("\n" + msg);
 		return new ModelAndView("addEmployee");
 	}
-	
+
 	@RequestMapping(value = "/edit.html", method = RequestMethod.GET)
-	public ModelAndView editEmpDetail(@ModelAttribute("empFrm")Employee empData,
+	public ModelAndView editEmpDetail(@RequestParam("id")Long empid ,@ModelAttribute("empFrm")Employee empData,
 			ModelMap model,HttpServletRequest re) {
 		model = new ModelMap();
-		System.out.println(empService.getEmpbyId(empData.getEmpid()));
-		model.addAttribute("employee", empService.getEmpbyId(empData.getEmpid()));
+		model.addAttribute("employee", empService.getEmpbyId(empid));
 		model.addAttribute("employees", empService.listOfEmp());
 		return new ModelAndView("addEmployee", model);
 	}
-	
+
 	@RequestMapping(value = "/delete.html", method = RequestMethod.GET)
-	public ModelAndView deleteEmpDetail(@ModelAttribute("empFrm") Employee empData,
+	public ModelAndView deleteEmpDetail(@RequestParam("id")Long empid,@ModelAttribute("empFrm") Employee empData,
 			ModelMap model,HttpServletRequest re) {
 		model = new ModelMap();
-		System.out.println(empService.getEmpbyId(empData.getEmpid()));
-		String msg = empService.delEmpbyId(empData.getEmpid());
+		String msg = empService.delEmpbyId(empid);
 		model.addAttribute("employees", empService.listOfEmp());
-		System.out.println(msg);
 		return new ModelAndView("addEmployee", model);
 	}
-	
+
 	@RequestMapping(value = "/employees.html", method = RequestMethod.GET)
 	public ModelAndView listofEmployee() {
 		ModelMap model = new ModelMap();
